@@ -1,5 +1,5 @@
 import fastapi
-from src.dto import CreateUserRequest, UserResponse
+from dto import CreateUserRequest, UserResponse
 from fastapi import Query
 
 app = fastapi.FastAPI()
@@ -38,7 +38,7 @@ def get_user(
 
 @app.get("/api/users")
 def get_users(
-    min_height: int = Query(0), max_height: int = Query(0)
+    min_height: float = Query(0), max_height: float = Query(float("inf"))
 ) -> list[UserResponse]:
     return [
         {
@@ -47,5 +47,5 @@ def get_users(
             "phone_number": item['phone_number'],
             "height": item['height'],
             "bio": item['bio'],
-        } for key, item in user_db.items() if item['height'] >= min_height and item.height <= max_height
+        } for key, item in user_db.items() if item['height'] >= min_height and item['height'] <= max_height
     ]
