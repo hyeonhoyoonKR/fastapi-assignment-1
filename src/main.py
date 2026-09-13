@@ -1,5 +1,5 @@
 import fastapi
-from dto import CreateUserRequest, UserResponse
+from src.dto import CreateUserRequest, UserResponse
 from fastapi import Query
 
 app = fastapi.FastAPI()
