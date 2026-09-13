@@ -9,6 +9,7 @@ user_db = {}
 @app.post("/api/users")
 def create_user(request: CreateUserRequest) -> UserResponse:
     user_id = len(user_db) + 1
+    user_db[user_id] = request
     return {
         "user_id": user_id,
         "name": request.name,
@@ -38,7 +39,7 @@ def get_user(
 
 @app.get("/api/users")
 def get_users(
-    min_height: float = Query(0), max_height: float = Query(float("inf"))
+    min_height: float = Query(0), max_height: float = Query(float('inf'))
 ) -> list[UserResponse]:
     return [
         {

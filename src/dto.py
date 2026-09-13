@@ -1,4 +1,4 @@
-from pydantic import BaseModel, field_validator
+from pydantic import BaseModel, field_validator, ConfigDict
 import re
 
 class CreateUserRequest(BaseModel):
@@ -6,6 +6,8 @@ class CreateUserRequest(BaseModel):
     phone_number: str
     height: float
     bio: str | None = None
+
+    model_config = ConfigDict(strict=True)
 
     @field_validator('phone_number')
     def check_phone_number(cls, phone_number: str):
