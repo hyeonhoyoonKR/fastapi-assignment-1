@@ -35,10 +35,10 @@ def get_user(
 
     return {
         "user_id": user_id,
-        "name": data.name,
-        "phone_number": data.phone_number,
-        "height": data.height,
-        "bio": data.bio,
+        "name": data["name"],
+        "phone_number": data["phone_number"],
+        "height": data["height"],
+        "bio": data["bio"],
     }
 
 
