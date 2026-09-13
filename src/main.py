@@ -9,7 +9,12 @@ user_db = {}
 @app.post("/api/users")
 def create_user(request: CreateUserRequest) -> UserResponse:
     user_id = len(user_db) + 1
-    user_db[user_id] = request
+    user_db[user_id] = {
+        "name": request.name,
+        "phone_number": request.phone_number,
+        "height": request.height,
+        "bio": request.bio,
+    }
     return {
         "user_id": user_id,
         "name": request.name,
